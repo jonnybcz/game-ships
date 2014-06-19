@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="cs-cz" dir="ltr">
+	<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+	<title>Loďe</title>
+	<link rel="shortcut icon" href="/img/water.png">
+	<link rel="stylesheet" href="/css/screen.css" type="text/css" media="all">
+	</head>
+	<body>
+		<a href="/"><img src="/img/logo.png" alt="logo ships" /></a>
+		<div id="screen1">
+			<div id="game">
+				<div id="key">
+					<span class="text">Pošli protihráči tento odkaz:</span><br/>
+				</div>
+			</div>
+		</div>
+		<div id="screen2">
+			<div id="map1"></div>
+			<div id="timer">
+				<div id="clock"></div>
+			</div>
+			<div id="map2"></div>
+			<div class="clear"></div>
+			<div id="messages"></div>
+		</div>
+		<div id="screen3" class="hide"></div>
+		<div id="overlay" class="hide"></div>
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="/js/Map.js"></script>
+		<script src="/js/Timer.js"></script>
+		<script src="/js/Game.js"></script>
+		<script src="/js/Message.js"></script>
+		<script src="/js/Sound.js"></script>
+
+		<script>
+			"use strict";
+			var socket = io.connect('http://localhost');
+			var sound = new Sound(["explosion", "miss", "sonar"], "/sound");
+			var game = new Game();
+			var message = new Message(document.querySelector("#messages"));
+
+			window.onhashchange = function(){
+				console.log("hash byl zmenen");
+			 	location.reload();
+			 } // @todo reloaduje stranku pri refreshi stranky a napise ze druhy hrac se odpojil, opravit
+		</script>
+	</body>
+</html>
